@@ -20,7 +20,6 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .bg-g2{width:70vw;height:70vw;max-width:800px;max-height:800px;bottom:-30%;right:-15%;background:radial-gradient(ellipse at center,rgba(168,85,247,0.04) 0%,transparent 65%)}
 .bg-g3{width:50vw;height:50vw;max-width:600px;max-height:600px;top:40%;left:50%;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(77,124,254,0.03) 0%,transparent 60%)}
 #stars-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
-.cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:6px;height:6px;background:var(--cyan);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 10px var(--cyan);transition:opacity .2s}
 .confetti-p{position:fixed;pointer-events:none;z-index:8500;border-radius:2px;will-change:transform,opacity;animation:confettiPop .6s ease-out forwards}
 .confetti-p.circle{border-radius:50%}
 @keyframes confettiPop{0%{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}100%{opacity:0;transform:translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(0)}}
@@ -116,9 +115,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 .card-inner:hover{transform:translateY(-6px);border-color:rgba(0,229,255,0.25);box-shadow:0 0 30px rgba(0,229,255,0.12),0 12px 40px rgba(0,0,0,0.4);background:var(--bg-ch)}
 .card-item.verified .card-inner{border-color:var(--gold)!important;box-shadow:0 0 40px rgba(245,158,11,0.3),0 0 80px rgba(245,158,11,0.12),0 8px 28px rgba(0,0,0,0.35)!important;animation:vGlow 2s ease-in-out infinite}
 @keyframes vGlow{0%,100%{box-shadow:0 0 40px rgba(245,158,11,0.3),0 0 80px rgba(245,158,11,0.12),0 8px 28px rgba(0,0,0,0.35)}50%{box-shadow:0 0 55px rgba(245,158,11,0.45),0 0 110px rgba(245,158,11,0.2),0 8px 28px rgba(0,0,0,0.35)}}
-.v-badge{display:none;position:absolute;top:10px;right:10px;z-index:10;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-weight:700;font-size:.6rem;padding:3px 8px;border-radius:20px;letter-spacing:.03em;animation:bPop .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 3px 12px rgba(245,158,11,0.4)}
+.v-badge{display:none;position:absolute;top:10px;right:10px;z-index:10;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-weight:700;font-size:.6rem;padding:3px 8px;border-radius:20px;letter-spacing:.03em;animation:bPop2 .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 3px 12px rgba(245,158,11,0.4)}
 .card-item.verified .v-badge{display:flex;align-items:center;gap:3px}
-@keyframes bPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes bPop2{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
 .av-wrap{position:relative;width:88px;height:88px;border-radius:50%;margin-bottom:14px;z-index:2;flex-shrink:0}
 .av-ring{position:absolute;inset:-3px;border-radius:50%;padding:2.5px;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--purple));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:subtract;mask-composite:subtract;animation:rr 4s linear infinite}
 @keyframes rr{to{transform:rotate(360deg)}}
@@ -191,7 +190,6 @@ footer{text-align:center;padding:22px 20px;color:var(--t3);font-size:.72rem;bord
 .cards-g{gap:12px}.card-inner{padding:18px 12px 18px}.av-wrap,.shaimaa-av{width:70px;height:70px}.c-name{font-size:.9rem}.c-role{font-size:.7rem}.c-role2{font-size:.62rem}.c-hint{font-size:.52rem}
 .navbar{padding:8px 10px;gap:6px;margin:8px 6px;border-radius:30px}.nav-logo{width:28px;height:28px}.nav-name{font-size:.6rem}.nav-link{font-size:.72rem;padding:5px 9px}
 .hero{padding:18px 12px 10px}.hero-orb{width:180px;height:180px}
-.cursor-dot{display:none}body{cursor:auto}
 .uni-badge{padding:6px 12px;gap:7px}.uni-logo{width:28px;height:28px}.uni-text{font-size:.78rem}
 .cosmic-wrap{width:160px;height:160px}.cosmic-img,.cosmic-fb{width:100px;height:100px}
 .co1{width:180px;height:180px;margin:-90px 0 0 -90px}.co2{width:220px;height:220px;margin:-110px 0 0 -110px}
@@ -207,7 +205,6 @@ footer{text-align:center;padding:22px 20px;color:var(--t3);font-size:.72rem;bord
 </head>
 <body>
 
-<div class="cursor-dot" id="cDot"></div>
 <canvas id="stars-canvas"></canvas>
 <div class="bg-glow bg-g1"></div>
 <div class="bg-glow bg-g2"></div>
@@ -270,7 +267,7 @@ footer{text-align:center;padding:22px 20px;color:var(--t3);font-size:.72rem;bord
       <div class="cosmic-fb">ICPC</div>
     </div>
     <h2 class="cosmic-title">International Collegiate Programming Contest</h2>
-    <p class="cosmic-sub">October Technological University </p>
+    <p class="cosmic-sub">October Technological University</p>
   </section>
 
   <div class="uni-badge">
@@ -291,13 +288,9 @@ footer{text-align:center;padding:22px 20px;color:var(--t3);font-size:.72rem;bord
       <div class="card-item shaimaa-card" data-person="shaimaa"><div class="card-inner"><div class="shaimaa-av"><div class="shaimaa-av-inner"></div><div class="shaimaa-av-content"><span class="shaimaa-av-icon">⭐</span><span class="shaimaa-av-letter">SG</span><div class="shaimaa-stars"><span>✦</span><span>✦</span><span>✦</span></div></div></div><span class="shaimaa-badge-special">✦ CONTEST COORDINATOR</span><h3 class="c-name">Shaimaa Gamal</h3><p class="c-role" style="color:#f59e0b">Contest Coordinator</p><p class="c-role2">ICPC OTU — University Representative</p><span class="c-hint">◈ Click to explore</span></div></div>
       <div class="card-item" data-person="eman"><div class="card-inner"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring" style="background:linear-gradient(135deg,#ec4899,#a855f7,#4d7cfe)"></div><img class="av-img" src="./eman-ashraf.png" alt="Eng. Eman Ashraf" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="av-ph">EA</div></div><h3 class="c-name">Eng. Eman Ashraf</h3><p class="c-role" style="color:#ec4899">Coach</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
       <div class="card-item" data-person="hossam"><div class="card-inner"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring" style="background:linear-gradient(135deg,#f59e0b,#ec4899,#a855f7)"></div><img class="av-img" src="./hossam-mahmoud.png" alt="Hossam Mahmoud" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="av-ph">HM</div></div><h3 class="c-name">Hossam Mahmoud</h3><p class="c-role" style="color:#f59e0b">Community Leader & Instructor</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
-
       <div class="card-item" data-person="adam"><div class="card-inner"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring"></div><img class="av-img" src="./adam-mohamed-mahmoud.png" alt="Adam Mahmoud" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="av-ph">AM</div></div><h3 class="c-name">Adam Mahmoud</h3><p class="c-role">Organizer & Instructor</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
-
       <div class="card-item" data-person="ahmed"><div class="card-inner"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring"></div><img class="av-img" src="./ahmed-sameh-osama.png" alt="Ahmed Sameh Osama" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="av-ph">AS</div></div><h3 class="c-name">Ahmed Sameh Osama</h3><p class="c-role">Organizer & Instructor</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
       <div class="card-item" data-person="nada"><div class="card-inner"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring"></div><img class="av-img" src="./nada-mohamed-safwat.png" alt="Nada Mohamed Safwat" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="av-ph">NS</div></div><h3 class="c-name">Nada Mohamed Safwat</h3><p class="c-role">Organizer & Instructor</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
-
-
     </div>
   </section>
 
@@ -307,7 +300,7 @@ footer{text-align:center;padding:22px 20px;color:var(--t3);font-size:.72rem;bord
       <h3 class="com-title">OTU Community on Facebook</h3>
       <p class="com-desc">Stay connected with the latest updates, contest announcements, and training sessions. Join our thriving community of passionate competitive programmers.</p>
       <a href="https://www.facebook.com/share/1HQDECFKrJ/" target="_blank" rel="noopener noreferrer" class="com-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235v2.953H15.83c-1.491 0-1.956.925 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.874 2.25v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         OTU Community
       </a>
     </div>
@@ -323,7 +316,6 @@ footer{text-align:center;padding:22px 20px;color:var(--t3);font-size:.72rem;bord
 (function(){
 const $=id=>document.getElementById(id);
 const ls=$('ls'),pMask=$('pMask'),lContent=$('lContent'),mCont=$('mCont');
-const cDot=$('cDot');
 const sCanvas=$('stars-canvas'),sCtx=sCanvas.getContext('2d');
 const mOv=$('mOv'),mCt=$('mCt'),mClose=$('mClose');
 const mImg=$('mImg'),mPh=$('mPh');
@@ -334,7 +326,6 @@ const toastEl=$('toast'),tMsg=$('tMsg');
 const bBox=$('balloon-box');
  $('yr').textContent=new Date().getFullYear();
 
-// === DATA ===
 const PD={
   shaimaa:{name:'Shaimaa Gamal',role:'Contest Coordinator',r2:'ICPC OTU — University Representative',init:'SG',rg:'linear-gradient(135deg,#f59e0b,#ec4899,#a855f7)',rc:'#f59e0b',noImg:true},
   eman:{name:'Eng. Eman Ashraf',role:'Coach',r2:'ICPC OTU',img:'./eman-ashraf.png',init:'EA',rg:'linear-gradient(135deg,#ec4899,#a855f7,#4d7cfe)',rc:'#ec4899'},
@@ -346,57 +337,52 @@ const PD={
 
 function showT(m){tMsg.textContent=m;toastEl.classList.add('show');clearTimeout(toastEl._t);toastEl._t=setTimeout(()=>toastEl.classList.remove('show'),3500)}
 
-// === STARFIELD (single canvas, efficient) ===
-let stars=[],mx=-999,my=-999,hSpeed=2.5;
+// === STARFIELD ===
+let stars=[];
 const isMobile=window.innerWidth<768;
-const STAR_COUNT=isMobile?60:140;
+const STAR_COUNT=isMobile?50:120;
+let sW=0,sH=0;
 
 function initStars(){
-  stars=[];const w=sCanvas.width,h=sCanvas.height;
+  stars=[];
   for(let i=0;i<STAR_COUNT;i++){
-    stars.push({
-      x:(Math.random()-.5)*w*2.5,
-      y:(Math.random()-.5)*h*2.5,
-      z:Math.random()*2000,
-      pz:0
-    });
-    stars[i].pz=stars[i].z;
+    const z=Math.random()*2000;
+    stars.push({x:(Math.random()-.5)*sW*2.5,y:(Math.random()-.5)*sH*2.5,z,pz:z});
   }
 }
 
 function resizeCanvas(){
-  sCanvas.width=window.innerWidth;
-  sCanvas.height=window.innerHeight;
+  sW=sCanvas.width=window.innerWidth;
+  sH=sCanvas.height=window.innerHeight;
   initStars();
 }
 resizeCanvas();
 
 function drawStars(){
-  const w=sCanvas.width,h=sCanvas.height;
-  sCtx.fillStyle='rgba(6,6,15,0.18)';
-  sCtx.fillRect(0,0,w,h);
-  const cx=w/2+(mx-w/2)*0.012,cy=h/2+(my-h/2)*0.012;
-  for(const s of stars){
-    s.pz=s.z;s.z-=hSpeed;
-    if(s.z<1){s.x=(Math.random()-.5)*w*2.5;s.y=(Math.random()-.5)*h*2.5;s.z=1800+Math.random()*400;s.pz=s.z;continue}
+  sCtx.fillStyle='rgba(6,6,15,0.2)';
+  sCtx.fillRect(0,0,sW,sH);
+  const spd=2.5+Math.min(window.scrollY*.002,6);
+  const cx=sW/2,cy=sH/2;
+  for(let i=0;i<stars.length;i++){
+    const s=stars[i];
+    s.pz=s.z;s.z-=spd;
+    if(s.z<1){s.x=(Math.random()-.5)*sW*2.5;s.y=(Math.random()-.5)*sH*2.5;s.z=1800+Math.random()*400;s.pz=s.z;continue}
     const sx=(s.x/s.z)*500+cx,sy=(s.y/s.z)*500+cy;
     const px=(s.x/s.pz)*500+cx,py=(s.y/s.pz)*500+cy;
-    const b=1-s.z/2200,a=Math.max(0,b*.65),lw=Math.max(.3,b*2.2);
+    const b=1-s.z/2200;
+    if(b<=0)continue;
     sCtx.beginPath();sCtx.moveTo(px,py);sCtx.lineTo(sx,sy);
-    sCtx.strokeStyle='rgba(180,210,255,'+a+')';sCtx.lineWidth=lw;sCtx.stroke();
+    sCtx.strokeStyle='rgba(180,210,255,'+(b*.6)+')';
+    sCtx.lineWidth=Math.max(.3,b*2);
+    sCtx.stroke();
   }
 }
 
-// === BALLOONS (integrated into main loop) ===
+// === BALLOONS ===
 const bDefs=[
-  {color:'#ff4757',label:'A',glow:'rgba(255,71,87,0.35)'},
-  {color:'#ffa502',label:'C',glow:'rgba(255,165,2,0.3)'},
-  {color:'#2ed573',label:'E',glow:'rgba(46,213,115,0.3)'},
-  {color:'#1e90ff',label:'F',glow:'rgba(30,144,255,0.3)'},
-  {color:'#a855f7',label:'G',glow:'rgba(168,85,247,0.3)'}
+  {color:'#ff4757',label:'A'},{color:'#ffa502',label:'C'},{color:'#2ed573',label:'E'},{color:'#1e90ff',label:'F'},{color:'#a855f7',label:'G'}
 ];
-let bId=0;
-let balloons=[];
+let bId=0,balloons=[];
 const B_COUNT=isMobile?2:4;
 
 function mkBalloonsSVG(c,l){
@@ -413,7 +399,7 @@ function spawnBalloon(fromBottom){
   el.style.cssText='left:'+x+'px;top:'+y+'px;width:'+size+'px;height:'+(size*1.5)+'px;opacity:'+(isMobile?.15:.28)+';';
   el.innerHTML=mkBalloonsSVG(d.color,d.label);
   bBox.appendChild(el);
-  const b={el,x,y,spd:.2+Math.random()*.35,swA:10+Math.random()*15,swS:.3+Math.random()*.5,ph:Math.random()*Math.PI*2,size,alive:true,color:d.color,glow:d.glow};
+  const b={el,x,y,spd:.2+Math.random()*.35,swA:10+Math.random()*15,swS:.3+Math.random()*.5,ph:Math.random()*Math.PI*2,size,alive:true,color:d.color};
   el.addEventListener('click',function(e){e.stopPropagation();popBalloon(b)});
   balloons.push(b);
 }
@@ -448,35 +434,21 @@ function updateBalloons(){
     const b=balloons[i];
     if(!b.alive){balloons.splice(i,1);continue}
     b.y-=b.spd;b.ph+=b.swS*.01;
-    const tx=Math.sin(b.ph)*b.swA;
     b.el.style.top=b.y+'px';
-    b.el.style.transform='translateX('+tx+'px)';
+    b.el.style.transform='translateX('+Math.sin(b.ph)*b.swA+'px)';
     if(b.y<-b.size*2){b.el.remove();balloons.splice(i,1);spawnBalloon(true)}
   }
   while(balloons.filter(b=>b.alive).length<B_COUNT)spawnBalloon(true);
 }
 
-// === SINGLE MAIN LOOP ===
+// === MAIN LOOP ===
 let tabVisible=true;
 document.addEventListener('visibilitychange',()=>{tabVisible=!document.hidden});
-let lastT=0;
-function mainLoop(t){
-  if(tabVisible){
-    const dt=Math.min((t-lastT)/16.67,3);
-    hSpeed=2.5+Math.min(window.scrollY*.002,6);
-    drawStars();
-    updateBalloons();
-  }
-  lastT=t;
+function mainLoop(){
+  if(tabVisible){drawStars();updateBalloons()}
   requestAnimationFrame(mainLoop);
 }
 requestAnimationFrame(mainLoop);
-
-// === CURSOR (throttled) ===
-let cX=-999,cY=-999;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cDot.style.left=mx+'px';cDot.style.top=my+'px'});
-document.addEventListener('mouseleave',()=>{mx=-999;my=-999;cDot.style.opacity='0'});
-document.addEventListener('mouseenter',()=>{cDot.style.opacity='1'});
 
 // === TERMINAL BOOT ===
 const tLines=[
@@ -485,7 +457,7 @@ const tLines=[
   {h:'<span class="tg">[ALG]</span> Compiling algorithms... <span class="dm">2,847 fn</span> <span class="ok">✓</span>',d:180},
   {h:'<span class="tg">[BLN]</span> Inflating balloons... <span class="ok">✓</span>',d:160},
   {h:'<span class="tg">[GPU]</span> Rendering starfield... <span class="ok">✓</span>',d:140},
-  {h:'<span class="ok">[READY]</span> Opening portal...</span>',d:130}
+  {h:'<span class="ok">[READY]</span> Opening portal...',d:130}
 ];
 async function runBoot(){
   return new Promise(r=>{
@@ -550,8 +522,7 @@ stBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 document.querySelectorAll('.nav-link').forEach(l=>{l.addEventListener('click',function(){document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('active'));this.classList.add('active')})});
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}})});
 
-// === CLICK CONFETTI (event delegation) ===
-const fxColors={card:['#00e5ff','#4d7cfe','#a855f7','#ec4899','#f59e0b'],badge:['#a855f7','#ec4899','#4d7cfe'],btn:['#1877f2','#0c5dc7','#00e5ff','#fff']};
+// === CLICK CONFETTI ===
 document.addEventListener('click',function(e){
   const card=e.target.closest('.card-inner');
   const badge=e.target.closest('.hero-badge,.sec-tag');
@@ -559,9 +530,9 @@ document.addEventListener('click',function(e){
   const close=e.target.closest('.m-close');
   let cols=null,cnt=0;
   if(close){cols=['#ef4444','#f59e0b','#fff'];cnt=6}
-  else if(card){cols=fxColors.card;cnt=8}
-  else if(badge){cols=fxColors.badge;cnt=6}
-  else if(btn){cols=fxColors.btn;cnt=8}
+  else if(card){cols=['#00e5ff','#4d7cfe','#a855f7','#ec4899','#f59e0b'];cnt=8}
+  else if(badge){cols=['#a855f7','#ec4899','#4d7cfe'];cnt=6}
+  else if(btn){cols=['#1877f2','#0c5dc7','#00e5ff','#fff'];cnt=8}
   if(!cols)return;
   const x=e.clientX,y=e.clientY;
   for(let i=0;i<cnt;i++){
@@ -588,7 +559,7 @@ document.querySelectorAll('.av-img,.cosmic-img,.loading-logo-img,.nav-logo,.uni-
 });
 
 // === RESIZE ===
-window.addEventListener('resize',()=>{resizeCanvas()},{passive:true});
+window.addEventListener('resize',resizeCanvas,{passive:true});
 
 // === LAUNCH ===
 window.addEventListener('load',async()=>{
