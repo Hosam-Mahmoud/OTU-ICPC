@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ICPC Organizers | OTU Community</title>
 <meta name="theme-color" content="#0a0a14">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#06060f;--bg-c:#0d0d1a;--bg-ch:#111128;--cyan:#00e5ff;--blue:#4d7cfe;--purple:#a855f7;--gold:#f59e0b;--pink:#ec4899;--t1:#e8e8f0;--t2:#b0b0c8;--t3:#6b6b8a;--glass:rgba(13,13,26,0.7);--glass-b:rgba(255,255,255,0.08);--sneon:0 0 40px rgba(0,229,255,0.15),0 0 80px rgba(77,124,254,0.1);--scard:0 8px 32px rgba(0,0,0,0.4);--rl:20px;--ts:.4s cubic-bezier(.25,.1,.25,1);--tb:.5s cubic-bezier(.34,1.56,.64,1)}
+:root{--bg:#06060f;--bg-c:#0d0d1a;--bg-ch:#111128;--cyan:#00e5ff;--blue:#4d7cfe;--purple:#a855f7;--gold:#f59e0b;--pink:#ec4899;--t1:#e8e8f0;--t2:#b0b0c8;--t3:#6b6b8a;--glass:rgba(13,13,26,0.72);--glass-b:rgba(255,255,255,0.08);--sneon:0 0 40px rgba(0,229,255,0.15),0 0 80px rgba(77,124,254,0.1);--scard:0 8px 32px rgba(0,0,0,0.4);--rl:20px;--ts:.4s cubic-bezier(.25,.1,.25,1);--tb:.5s cubic-bezier(.34,1.56,.64,1)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:rgba(77,124,254,0.4) transparent}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(77,124,254,0.5);border-radius:20px}
-body{font-family:'Inter','Space Grotesk',sans-serif;background:var(--bg);color:var(--t1);overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased;cursor:none}
+body{font-family:'Inter','Space Grotesk',sans-serif;background:var(--bg);color:var(--t1);overflow-x:hidden;min-height:100vh;-webkit-font-smoothing:antialiased}
 body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,229,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.012) 1px,transparent 1px);background-size:80px 80px}
 body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.02) 2px,rgba(0,0,0,0.02) 4px)}
 .cursor-dot{position:fixed;pointer-events:none;z-index:9999;width:8px;height:8px;background:var(--cyan);border-radius:50%;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference;box-shadow:0 0 15px var(--cyan)}
@@ -54,15 +54,14 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 #rain-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
 .loading-screen{position:fixed;inset:0;z-index:10000;pointer-events:all;cursor:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:visibility 0s .1s}
 .loading-screen.gone{pointer-events:none;visibility:hidden}
-.portal-mask{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;box-shadow:0 0 0 200vmax var(--bg);z-index:1;transition:width 1.8s cubic-bezier(.25,.1,.25,1),height 1.8s cubic-bezier(.25,.1,.25,1),box-shadow 1.8s cubic-bezier(.25,.1,.25,1)}
-.portal-mask::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--cyan);box-shadow:0 0 25px var(--cyan),0 0 60px rgba(0,229,255,0.2),inset 0 0 25px rgba(0,229,255,0.1);animation:portalGlow 2s ease-in-out infinite;transition:opacity .8s}
-.portal-mask.open{width:280vmax;height:280vmax;box-shadow:0 0 0 0px var(--bg)}
+.portal-mask{position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border-radius:50%;background:var(--bg);z-index:1;clip-path:circle(18px at 50% 42%);transition:clip-path 1.8s cubic-bezier(.25,.1,.25,1);pointer-events:all;}
+.portal-mask::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--cyan);box-shadow:0 0 25px var(--cyan),0 0 60px rgba(0,229,255,0.2),inset 0 0 25px rgba(0,229,255,0.1);animation:portalGlow 2s ease-in-out infinite;transition:opacity .8s}
+.portal-mask.open{clip-path:circle(150vmax at 50% 42%);pointer-events:none;}
 .portal-mask.open::after{opacity:0}
 @keyframes portalGlow{0%,100%{box-shadow:0 0 25px var(--cyan),0 0 60px rgba(0,229,255,0.2),inset 0 0 25px rgba(0,229,255,0.1)}50%{box-shadow:0 0 40px var(--cyan),0 0 90px rgba(0,229,255,0.35),inset 0 0 40px rgba(0,229,255,0.15)}}
 .loading-content{position:relative;z-index:2;text-align:center;transition:opacity .6s ease}
 .loading-content.fade{opacity:0}
 .loading-logo-img{width:80px;height:80px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(0,229,255,0.5));animation:lFloat 3s ease-in-out infinite;margin-bottom:20px}
-.loading-logo-img[style*="display: none"]+.l-fallback{display:flex!important}
 .l-fallback{width:80px;height:80px;border-radius:16px;display:none;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-weight:900;font-size:1.2rem;color:var(--cyan);background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.2);margin:0 auto 20px;animation:lFloat 3s ease-in-out infinite;letter-spacing:3px}
 @keyframes lFloat{0%,100%{transform:translateY(0);filter:drop-shadow(0 0 20px rgba(0,229,255,0.5))}50%{transform:translateY(-8px);filter:drop-shadow(0 0 35px rgba(0,229,255,0.8))}}
 .loading-terminal{width:min(460px,90vw);background:rgba(10,10,25,0.92);border:1px solid rgba(0,229,255,0.15);border-radius:12px;overflow:hidden;margin:0 auto 20px;box-shadow:0 0 40px rgba(0,229,255,0.08)}
@@ -138,7 +137,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 .card-item{perspective:800px;width:100%;max-width:320px;animation:fiu .8s ease both}
 .card-item:nth-child(1){animation-delay:.08s}.card-item:nth-child(2){animation-delay:.16s}.card-item:nth-child(3){animation-delay:.24s}.card-item:nth-child(4){animation-delay:.32s}.card-item:nth-child(5){animation-delay:.4s}.card-item:nth-child(6){animation-delay:.48s}
 .card-inner{position:relative;background:var(--bg-c);border:1px solid rgba(255,255,255,0.06);border-radius:var(--rl);padding:26px 20px 24px;text-align:center;transition:transform .2s ease-out,border-color var(--ts),box-shadow var(--ts),background var(--ts);overflow:hidden;z-index:1;box-shadow:var(--scard);height:100%;display:flex;flex-direction:column;align-items:center;transform-style:preserve-3d;will-change:transform;cursor:pointer}
-.card-inner::before{content:'';position:absolute;inset:0;border-radius:var(--rl);padding:1.5px;background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.08) 50%,transparent 60%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:3}
+.card-inner::before{content:'';position:absolute;inset:0;border-radius:var(--rl);padding:1.5px;background:linear-gradient(135deg,transparent 40%,rgba(255,255,255,0.08) 50%,transparent 60%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:subtract;mask-composite:subtract;pointer-events:none;z-index:3}
 .card-inner:hover{border-color:rgba(0,229,255,0.3);box-shadow:var(--sneon),var(--scard);background:var(--bg-ch)}
 .card-item.verified .card-inner{border-color:var(--gold)!important;box-shadow:0 0 50px rgba(245,158,11,0.35),0 0 100px rgba(245,158,11,0.15),var(--scard)!important;animation:vGlow 1.8s ease-in-out infinite}
 @keyframes vGlow{0%,100%{box-shadow:0 0 50px rgba(245,158,11,0.35),0 0 100px rgba(245,158,11,0.15),var(--scard)}50%{box-shadow:0 0 70px rgba(245,158,11,0.55),0 0 140px rgba(245,158,11,0.25),var(--scard)}}
@@ -146,7 +145,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 .card-item.verified .v-badge{display:flex;align-items:center;gap:3px}
 @keyframes bPop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
 .av-wrap{position:relative;width:95px;height:95px;border-radius:50%;margin-bottom:16px;z-index:2;flex-shrink:0}
-.av-ring{position:absolute;inset:-4px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--purple));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:rr 4s linear infinite}
+.av-ring{position:absolute;inset:-4px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--purple));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:subtract;mask-composite:subtract;animation:rr 4s linear infinite}
 @keyframes rr{to{transform:rotate(360deg)}}
 .av-img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:#1a1a30;position:relative;z-index:1}
 .av-ph{width:100%;height:100%;border-radius:50%;display:none;align-items:center;justify-content:center;font-weight:700;font-size:1.9rem;color:#fff;background:linear-gradient(135deg,#1e1e3a,#252550);position:absolute;inset:0;z-index:1}
@@ -182,8 +181,8 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 @keyframes sw{0%{transform:scale(.3);opacity:.7}100%{transform:scale(4.5);opacity:0}}
 .m-av-ct{width:180px;height:180px;margin:0 auto 22px;position:relative;z-index:2}
 .m-ring{position:absolute;border-radius:50%;pointer-events:none}
-.m-r1{inset:-10px;background:conic-gradient(from 0deg,var(--cyan),var(--blue),var(--purple),var(--pink),var(--cyan));padding:3px;animation:mCW 3s linear infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;filter:drop-shadow(0 0 8px rgba(0,229,255,0.4))}
-.m-r2{inset:-20px;background:conic-gradient(from 180deg,var(--gold),var(--pink),var(--cyan),var(--gold));padding:2px;animation:mCCW 5s linear infinite;opacity:.4;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.m-r1{inset:-10px;background:conic-gradient(from 0deg,var(--cyan),var(--blue),var(--purple),var(--pink),var(--cyan));padding:3px;animation:mCW 3s linear infinite;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:subtract;mask-composite:subtract;filter:drop-shadow(0 0 8px rgba(0,229,255,0.4))}
+.m-r2{inset:-20px;background:conic-gradient(from 180deg,var(--gold),var(--pink),var(--cyan),var(--gold));padding:2px;animation:mCCW 5s linear infinite;opacity:.4;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:subtract;mask-composite:subtract}
 @keyframes mCW{to{transform:rotate(360deg)}}@keyframes mCCW{to{transform:rotate(-360deg)}}
 .m-av-img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;background:#1a1a30;position:relative;z-index:1;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
 .m-av-ct:hover .m-av-img{transform:rotate(360deg)}
@@ -221,7 +220,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 @keyframes fcD3{0%{transform:translateY(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100vh);opacity:0}}
 @media(max-width:767px){
 .cards-g{grid-template-columns:1fr 1fr;gap:12px}.card-inner{padding:18px 12px 20px}.av-wrap,.shaimaa-av{width:72px;height:72px}.c-name{font-size:.92rem}.c-role{font-size:.7rem}.c-role2{font-size:.62rem}.c-hint{font-size:.55rem}
-.navbar{padding:10px 12px;gap:8px;border-radius:30px;margin:10px 6px}.nav-logo{width:30px;height:30px}.nav-name{font-size:.65rem}
+.navbar{padding:10px 12px;gap:8px;border-radius:30px;margin:10px 8px}.nav-logo{width:30px;height:30px}.nav-name{font-size:.65rem}
 .hero{padding:22px 14px 14px}.hero-orb{width:200px;height:200px}
 .cursor-dot,.cursor-ring{display:none}body{cursor:auto}
 .uni-badge{padding:7px 14px;gap:8px}.uni-logo{width:32px;height:32px}.uni-text{font-size:.82rem}
@@ -248,27 +247,14 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 <div class="vignette"></div>
 <div id="balloon-container"></div>
 
-<div class="fc fc1">int main() {
-  vector&lt;pair&lt;int,int&gt;&gt; v;
-  for(int i=0; i&lt;n; ++i)
-    v.push_back({a[i], b[i]});
-  sort(v.begin(), v.end());
-  int lo=0, hi=n-1;
-  while(lo&lt;=hi) {
-    int mid=(lo+hi)/2;
-    if(check(mid)) hi=mid-1;
-    else lo=mid+1;
-  }
-  return 0;
-}</div>
+<div class="fc fc1">int main(){vector&lt;pair&lt;int,int&gt;&gt; v;for(int i=0; i&lt;n; ++i)v.push_back({a[i], b[i]});sort(v.begin(),v.end());int lo=0,hi=n-1;while(lo&lt;=hi){int mid=(lo+hi)/2;if(check(mid))hi=mid-1;else lo=mid+1;}return 0;}</div>
 <div class="fc fc2">#include &lt;bits/stdc++.h&gt;
 using namespace std;
 #define ll long long
 ll dp[1005][1005];
 ll solve(int i, int j) {
   if(i &gt;= n) return 0;
-  if(dp[i][j] != -1)
-    return dp[i][j];
+  if(dp[i][j] != -1)return dp[i][j];
   ll take = a[i]+solve(i+2,j);
   ll skip = solve(i+1,j);
   return dp[i][j]=max(take,skip);
@@ -281,8 +267,7 @@ ll solve(int i, int j) {
     sz[u] += sz[v];
     ans += sz[v]*(n-sz[v]);
   }
-}
-// O(n) tree DP</div>
+}</div>
 
 <div class="loading-screen" id="ls">
   <div class="portal-mask" id="pMask"></div>
@@ -360,17 +345,11 @@ ll solve(int i, int j) {
   <section class="team-sec" id="team">
     <div class="sec-hdr"><span class="sec-tag" data-fx="badge">👥 Our Team</span><h2 class="sec-title">Organizers & Instructors</h2></div>
     <div class="cards-g">
-      <!-- شيماء الأول -->
-      <div class="card-item shaimaa-card" id="card-shaimaa" data-person="shaimaa"><div class="card-inner" data-fx="card"><div class="shaimaa-av"><div class="shaimaa-av-inner"></div><div class="shaimaa-av-content"><span class="shaimaa-av-icon">⭐</span><span class="shaimaa-av-letter">SG</span><div class="shaimaa-stars"><span>✦</span><span>✦</span><span>✦</span></div></div></div><span class="shaimaa-badge-special">✦ </span><h3 class="c-name">Shaimaa Gamal</h3><p class="c-role" style="color:#f59e0b"> </p><p class="c-role2">ICPC OTU — University Representative</p><span class="c-hint">◈ Click to explore</span></div></div>
-      <!-- إيمان -->
+      <div class="card-item shaimaa-card" id="card-shaimaa" data-person="shaimaa"><div class="card-inner" data-fx="card"><div class="shaimaa-av"><div class="shaimaa-av-inner"></div><div class="shaimaa-av-content"><span class="shaimaa-av-icon">⭐</span><span class="shaimaa-av-letter">SG</span><div class="shaimaa-stars"><span>✦</span><span>✦</span><span>✦</span></div></div></div><span class="shaimaa-badge-special">✦ CONTEST COORDINATOR</span><h3 class="c-name">Shaimaa Gamal</h3><p class="c-role" style="color:#f59e0b">Contest Coordinator</p><p class="c-role2">ICPC OTU — University Representative</p><span class="c-hint">◈ Click to explore</span></div></div>
       <div class="card-item" id="card-eman" data-person="eman"><div class="card-inner" data-fx="card"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring" style="background:linear-gradient(135deg,#ec4899,#a855f7,#4d7cfe)"></div><img class="av-img" src="./eman-ashraf.png" alt="Eng. Eman Ashraf" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="av-ph">EA</div></div><h3 class="c-name">Eng. Eman Ashraf</h3><p class="c-role" style="color:#ec4899">Coach</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
-      <!-- حسام -->
       <div class="card-item" id="card-hossam" data-person="hossam"><div class="card-inner" data-fx="card"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring" style="background:linear-gradient(135deg,#f59e0b,#ec4899,#a855f7)"></div><img class="av-img" src="./hossam-mahmoud.png" alt="Hossam Mahmoud" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="av-ph">HM</div></div><h3 class="c-name">Hossam Mahmoud</h3><p class="c-role" style="color:#f59e0b">Community Leader & Instructor</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
-      <!-- نادا -->
       <div class="card-item" id="card-nada" data-person="nada"><div class="card-inner" data-fx="card"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring"></div><img class="av-img" src="./nada-mohamed-safwat.png" alt="Nada Mohamed Safwat" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="av-ph">NS</div></div><h3 class="c-name">Nada Mohamed Safwat</h3><p class="c-role">Organizer & Instructor</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
-      <!-- آدم -->
-      <div class="card-item" id="card-adam" data-person="adam"><div class="card-inner" data-fx="card"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring"></div><img class="av-img" src="./adam-mohamed-mahmoud.png" alt="Adam Mohamed Mahmoud" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="av-ph">AM</div></div><h3 class="c-name">Adam Mohamed Mahmoud</h3><p class="c-role">Organizer & Instructor</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
-      <!-- أحمد -->
+      <div class="card-item" id="card-adam" data-person="adam"><div class="card-inner" data-fx="card"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring"></div><img class="av-img" src="./adam-mohamed-mahmoud.png" alt="Adam Mahmoud" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="av-ph">AM</div></div><h3 class="c-name">Adam Mahmoud</h3><p class="c-role">Organizer & Instructor</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
       <div class="card-item" id="card-ahmed" data-person="ahmed"><div class="card-inner" data-fx="card"><span class="v-badge">✓ VERIFIED</span><div class="av-wrap"><div class="av-ring"></div><img class="av-img" src="./ahmed-sameh-osama.png" alt="Ahmed Sameh Osama" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="av-ph">AS</div></div><h3 class="c-name">Ahmed Sameh Osama</h3><p class="c-role">Organizer & Instructor</p><p class="c-role2">ICPC OTU</p><span class="c-hint">◈ Click to explore</span></div></div>
     </div>
   </section>
@@ -380,8 +359,8 @@ ll solve(int i, int j) {
       <div class="com-icon" data-fx="emoji">🌐</div>
       <h3 class="com-title">OTU Community on Facebook</h3>
       <p class="com-desc">Stay connected with the latest updates, contest announcements, and training sessions. Join our thriving community of passionate competitive programmers.</p>
-      <a href="https://www.facebook.com/share/1HQDECFKrJ/" target="_blank" rel="noopener noreferrer" class="com-btn" data-fx="btn" aria-label="Visit OTU Community on Facebook">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      <a href="https://www.facebook.com/share/1HQDECFKrJ/" target="_blank" rel="noopener noreferrer" class="com-btn" data-fx="btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235v2.953H15.83c-1.491 0-1.956.925 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         OTU Community
       </a>
     </div>
@@ -396,225 +375,204 @@ ll solve(int i, int j) {
 <div class="toast" id="toast"><span id="tMsg"></span></div>
 
 <script>
-(function(){
-const $=id=>document.getElementById(id);
-const ls=$('ls'),pMask=$('pMask'),lContent=$('lContent'),mCont=$('mCont');
-const cDot=$('cDot'),cRing=$('cRing');
-const hCanvas=$('hyperspace'),hCtx=hCanvas.getContext('2d');
-const rCanvas=$('rain-canvas'),rCtx=rCanvas.getContext('2d');
-const mOv=$('mOv'),mCt=$('mCt'),mClose=$('mClose');
-const mImg=$('mImg'),mPh=$('mPh'),mAC=$('mAC');
-const mName=$('mName'),mRole=$('mRole'),mR2=$('mR2'),mDiv=$('mDiv');
-const mPC=$('mPC'),stBtn=$('stBtn'),hSub=$('hSub');
-const tBody=$('tBody'),lBar=$('lBar'),lFill=$('lFill');
-const toast=$('toast'),tMsg=$('tMsg');
-const bContainer=$('balloon-container');
- $('yr').textContent=new Date().getFullYear();
+// ======================== CORRECTED SCRIPT ========================
+(function() {
+    // DOM references
+    const $ = id => document.getElementById(id);
+    const ls = $('ls'), pMask = $('pMask'), lContent = $('lContent'), mCont = $('mCont');
+    const cDot = $('cDot'), cRing = $('cRing');
+    const hCanvas = $('hyperspace'), hCtx = hCanvas.getContext('2d');
+    const rCanvas = $('rain-canvas'), rCtx = rCanvas.getContext('2d');
+    const mOv = $('mOv'), mCt = $('mCt'), mClose = $('mClose');
+    const mImg = $('mImg'), mPh = $('mPh'), mAC = $('mAC');
+    const mName = $('mName'), mRole = $('mRole'), mR2 = $('mR2'), mDiv = $('mDiv');
+    const mPC = $('mPC'), stBtn = $('stBtn'), hSub = $('hSub');
+    const tBody = $('tBody'), lBar = $('lBar'), lFill = $('lFill');
+    const toast = $('toast'), tMsg = $('tMsg');
+    const bContainer = $('balloon-container');
+    $('yr').textContent = new Date().getFullYear();
 
-/* ===== BALLOONS (reduced) ===== */
-const balloonDefs=[
-  {color:'#ff4757',label:'A',glow:'rgba(255,71,87,0.4)'},
-  {color:'#ffa502',label:'C',glow:'rgba(255,165,2,0.35)'},
-  {color:'#2ed573',label:'E',glow:'rgba(46,213,115,0.35)'},
-  {color:'#1e90ff',label:'F',glow:'rgba(30,144,255,0.35)'},
-  {color:'#a855f7',label:'G',glow:'rgba(168,85,247,0.35)'},
-  {color:'#ec4899',label:'H',glow:'rgba(236,72,153,0.35)'},
-  {color:'#00e5ff',label:'I',glow:'rgba(0,229,255,0.35)'},
-];
-let balloons=[];
-const isMob=()=>window.innerWidth<768;
-// REDUCED: 5 desktop, 3 mobile
-const balloonCount=()=>isMob()?3:5;
+    // Person data
+    const PD = {
+        shaimaa: { name: 'Shaimaa Gamal', role: 'Contest Coordinator', r2: 'ICPC OTU — University Representative', init: 'SG', rg: 'linear-gradient(135deg,#f59e0b,#ec4899,#a855f7)', rc: '#f59e0b', noImg: true },
+        eman: { name: 'Eng. Eman Ashraf', role: 'Coach', r2: 'ICPC OTU', img: './eman-ashraf.png', init: 'EA', rg: 'linear-gradient(135deg,#ec4899,#a855f7,#4d7cfe)', rc: '#ec4899' },
+        hossam: { name: 'Hossam Mahmoud', role: 'Community Leader & Instructor', r2: 'ICPC OTU', img: './hossam-mahmoud.png', init: 'HM', rg: 'linear-gradient(135deg,#f59e0b,#ec4899,#a855f7)', rc: '#f59e0b' },
+        nada: { name: 'Nada Mohamed Safwat', role: 'Organizer & Instructor', r2: 'ICPC OTU', img: './nada-mohamed-safwat.png', init: 'NS', rg: 'linear-gradient(135deg,#00e5ff,#4d7cfe,#a855f7)', rc: '#00e5ff' },
+        adam: { name: 'Adam Mahmoud', role: 'Organizer & Instructor', r2: 'ICPC OTU', img: './adam-mohamed-mahmoud.png', init: 'AM', rg: 'linear-gradient(135deg,#00e5ff,#4d7cfe,#a855f7)', rc: '#00e5ff' },
+        ahmed: { name: 'Ahmed Sameh Osama', role: 'Organizer & Instructor', r2: 'ICPC OTU', img: './ahmed-sameh-osama.png', init: 'AS', rg: 'linear-gradient(135deg,#00e5ff,#4d7cfe,#a855f7)', rc: '#00e5ff' }
+    };
 
-function createBalloonSVG(c,l){return `<svg viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="bg_${l}" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#fff" stop-opacity="0.45"/><stop offset="40%" stop-color="${c}" stop-opacity="0.9"/><stop offset="100%" stop-color="${c}" stop-opacity="0.7"/></radialGradient></defs><ellipse cx="30" cy="35" rx="22" ry="28" fill="url(#bg_${l})" stroke="${c}" stroke-width="0.5" stroke-opacity="0.3"/><polygon points="27,62 30,68 33,62" fill="${c}" opacity="0.8"/><path d="M30 68 Q31 75 29 82" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/><text x="30" y="40" text-anchor="middle" font-family="'JetBrains Mono',monospace" font-weight="700" font-size="14" fill="rgba(0,0,0,0.25)">${l}</text></svg>`;}
+    // Helper: show toast
+    function showT(msg) { tMsg.textContent = msg; toast.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => toast.classList.remove('show'), 4000); }
 
-function spawnBalloon(fromBottom){
-  const def=balloonDefs[Math.floor(Math.random()*balloonDefs.length)];
-  const el=document.createElement('div');el.className='balloon';
-  const size=30+Math.random()*25;
-  const x=Math.random()*(window.innerWidth-size);
-  const y=fromBottom?window.innerHeight+size:Math.random()*window.innerHeight*1.5+window.innerHeight*.3;
-  // REDUCED opacity: 30% desktop, 20% mobile
-  el.style.cssText=`left:${x}px;top:${y}px;width:${size}px;height:${size*1.5}px;--bc:${def.glow};opacity:${isMob()?0.2:0.3};`;
-  el.innerHTML=createBalloonSVG(def.color,def.label);
-  el.dataset.color=def.color;el.dataset.glow=def.glow;
-  bContainer.appendChild(el);
-  const b={el,x,y,speed:.25+Math.random()*.45,swayAmp:12+Math.random()*20,swaySpeed:.4+Math.random()*.8,phase:Math.random()*Math.PI*2,size,alive:true};
-  balloons.push(b);
-  el.addEventListener('click',(e)=>{e.stopPropagation();popBalloon(b,def);});
-  return b;
-}
+    // ========== BALLOONS ==========
+    let balloons = [];
+    let bAnimId = null;
+    const balloonDefs = [
+        { color: '#ff4757', label: 'A', glow: 'rgba(255,71,87,0.4)' },
+        { color: '#ffa502', label: 'C', glow: 'rgba(255,165,2,0.35)' },
+        { color: '#2ed573', label: 'E', glow: 'rgba(46,213,115,0.35)' },
+        { color: '#1e90ff', label: 'F', glow: 'rgba(30,144,255,0.35)' },
+        { color: '#a855f7', label: 'G', glow: 'rgba(168,85,247,0.35)' },
+        { color: '#ec4899', label: 'H', glow: 'rgba(236,72,153,0.35)' },
+        { color: '#00e5ff', label: 'I', glow: 'rgba(0,229,255,0.35)' }
+    ];
+    let bIdCounter = 0;
+    function mkBalloonSvg(c, l) {
+        const id = 'bg' + (bIdCounter++);
+        return `<svg viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="${id}" cx="35%" cy="30%" r="65%"><stop offset="0%" stop-color="#fff" stop-opacity="0.45"/><stop offset="40%" stop-color="${c}" stop-opacity="0.9"/><stop offset="100%" stop-color="${c}" stop-opacity="0.7"/></radialGradient></defs><ellipse cx="30" cy="35" rx="22" ry="28" fill="url(#${id})" stroke="${c}" stroke-width="0.5" stroke-opacity="0.3"/><polygon points="27,62 30,68 33,62" fill="${c}" opacity="0.8"/><path d="M30 68 Q31 75 29 82" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/><text x="30" y="40" text-anchor="middle" font-family="monospace" font-weight="700" font-size="14" fill="rgba(0,0,0,0.25)">${l}</text></svg>`;
+    }
+    function spawnBalloon(bottom) {
+        const d = balloonDefs[Math.floor(Math.random() * balloonDefs.length)];
+        const el = document.createElement('div'); el.className = 'balloon';
+        const size = 30 + Math.random() * 25;
+        const x = Math.random() * (window.innerWidth - size);
+        const y = bottom ? window.innerHeight + size : Math.random() * window.innerHeight * 1.5 + window.innerHeight * 0.3;
+        el.style.cssText = `left:${x}px;top:${y}px;width:${size}px;height:${size * 1.5}px;--bc:${d.glow};opacity:${window.innerWidth < 768 ? 0.2 : 0.3};`;
+        el.innerHTML = mkBalloonSvg(d.color, d.label);
+        el.dataset.color = d.color; el.dataset.glow = d.glow;
+        bContainer.appendChild(el);
+        const balloonObj = { el, x, y, speed: 0.25 + Math.random() * 0.45, swayAmp: 12 + Math.random() * 20, swaySpeed: 0.4 + Math.random() * 0.8, phase: Math.random() * Math.PI * 2, size, alive: true };
+        balloons.push(balloonObj);
+        el.addEventListener('click', (e) => { e.stopPropagation(); popBalloon(balloonObj, d); });
+        return balloonObj;
+    }
+    function popBalloon(b, d) {
+        if (!b.alive) return; b.alive = false;
+        const rect = b.el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2, cy = rect.top + rect.height * 0.35;
+        b.el.classList.add('balloon-pop');
+        const popDiv = document.createElement('div'); popDiv.className = 'pop-text';
+        popDiv.style.cssText = `left:${cx}px;top:${cy}px;color:${d.color};`;
+        popDiv.textContent = 'POP!'; document.body.appendChild(popDiv);
+        popDiv.addEventListener('animationend', () => popDiv.remove());
+        const cols = [d.color, '#ffffff', d.color, d.color];
+        for (let i = 0; i < 12; i++) {
+            const cf = document.createElement('div'); const sh = Math.random();
+            cf.className = 'confetti-p' + (sh < 0.5 ? ' circle' : sh < 0.75 ? '' : ' star');
+            const angle = (Math.PI * 2 / 12) * i + (Math.random() - 0.5) * 0.6;
+            const dist = 12 + Math.random() * 28;
+            cf.style.cssText = `left:${cx}px;top:${cy}px;width:${3 + Math.random() * 4}px;height:${3 + Math.random() * 4}px;background:${cols[Math.floor(Math.random() * cols.length)]};--tx:${Math.cos(angle) * dist}px;--ty:${Math.sin(angle) * dist - 15 - Math.random() * 25}px;--rot:${(Math.random() - 0.5) * 720}deg;animation-duration:${0.4 + Math.random() * 0.35}s;`;
+            document.body.appendChild(cf); cf.addEventListener('animationend', () => cf.remove());
+        }
+        for (let i = 0; i < 8; i++) {
+            const sp = document.createElement('div'); sp.className = 'sparkle';
+            const angle = (Math.PI * 2 / 8) * i + (Math.random() - 0.5) * 0.6;
+            const dist = 12 + Math.random() * 28;
+            sp.style.cssText = `left:${cx}px;top:${cy}px;background:${d.glow};box-shadow:0 0 6px ${d.glow};--tx:${Math.cos(angle) * dist}px;--ty:${Math.sin(angle) * dist}px;--tx2:${Math.cos(angle) * dist * 1.4 + (Math.random() - 0.5) * 12}px;--ty2:${Math.sin(angle) * dist * 1.4 + 8 + Math.random() * 12}px;`;
+            document.body.appendChild(sp); sp.addEventListener('animationend', () => sp.remove());
+        }
+        const ripple = document.createElement('div'); ripple.className = 'click-ripple';
+        ripple.style.cssText = `left:${cx}px;top:${cy}px;border-color:${d.color};`;
+        document.body.appendChild(ripple); ripple.addEventListener('animationend', () => ripple.remove());
+        setTimeout(() => b.el.remove(), 300);
+        setTimeout(() => spawnBalloon(true), 2500 + Math.random() * 3500);
+    }
+    function animateBalloons() {
+        for (let i = balloons.length - 1; i >= 0; i--) {
+            const b = balloons[i];
+            if (!b.alive) { balloons.splice(i, 1); continue; }
+            b.y -= b.speed; b.phase += b.swaySpeed * 0.01;
+            b.el.style.top = b.y + 'px';
+            b.el.style.transform = `translateX(${Math.sin(b.phase) * b.swayAmp}px)`;
+            if (b.y < -b.size * 2) { b.el.remove(); balloons.splice(i, 1); spawnBalloon(true); }
+        }
+        const needed = window.innerWidth < 768 ? 3 : 5;
+        while (balloons.filter(b => b.alive).length < needed) spawnBalloon(true);
+        bAnimId = requestAnimationFrame(animateBalloons);
+    }
+    function initBalloons() { balloons.forEach(b => b.el && b.el.remove()); balloons = []; for (let i = 0; i < (window.innerWidth < 768 ? 3 : 5); i++) setTimeout(() => spawnBalloon(false), i * 600); if (bAnimId) cancelAnimationFrame(bAnimId); animateBalloons(); }
 
-function popBalloon(b,def){
-  if(!b.alive)return;b.alive=false;
-  const r=b.el.getBoundingClientRect();
-  const cx=r.left+r.width/2,cy=r.top+r.height*.35;
-  b.el.classList.add('balloon-pop');
-  // POP text
-  const p=document.createElement('div');p.className='pop-text';
-  p.style.cssText=`left:${cx}px;top:${cy}px;color:${def.color};`;
-  p.textContent='POP!';document.body.appendChild(p);p.addEventListener('animationend',()=>p.remove());
-  // Confetti
-  const cols=[def.color,'#ffffff',def.color];
-  for(let i=0;i<14;i++){
-    const el=document.createElement('div');
-    const sh=Math.random();
-    el.className='confetti-p'+(sh<.5?' circle':sh<.75?'':' star');
-    const a=(Math.PI*2/14)*i+(Math.random()-.5)*.8;
-    const d=25+Math.random()*65;
-    el.style.cssText=`left:${cx}px;top:${cy}px;width:${3+Math.random()*4}px;height:${3+Math.random()*4}px;background:${cols[Math.floor(Math.random()*cols.length)]};--tx:${Math.cos(a)*d}px;--ty:${Math.sin(a)*d-15-Math.random()*25}px;--rot:${(Math.random()-.5)*720}deg;animation-duration:${.4+Math.random()*.35}s;`;
-    document.body.appendChild(el);el.addEventListener('animationend',()=>el.remove());
-  }
-  // Sparkles
-  for(let i=0;i<8;i++){
-    const el=document.createElement('div');el.className='sparkle';
-    const a=(Math.PI*2/8)*i+(Math.random()-.5)*.6;const d=12+Math.random()*28;
-    el.style.cssText=`left:${cx}px;top:${cy}px;background:${def.glow};box-shadow:0 0 6px ${def.glow};--tx:${Math.cos(a)*d}px;--ty:${Math.sin(a)*d}px;--tx2:${Math.cos(a)*d*1.4+(Math.random()-.5)*12}px;--ty2:${Math.sin(a)*d*1.4+8+Math.random()*12}px;`;
-    document.body.appendChild(el);el.addEventListener('animationend',()=>el.remove());
-  }
-  // Ripple
-  const rip=document.createElement('div');rip.className='click-ripple';
-  rip.style.cssText=`left:${cx}px;top:${cy}px;border-color:${def.color};`;
-  document.body.appendChild(rip);rip.addEventListener('animationend',()=>rip.remove());
-  setTimeout(()=>b.el.remove(),300);
-  // REDUCED: slower respawn (2.5-6s instead of 1.5-4.5s)
-  setTimeout(()=>spawnBalloon(true),2500+Math.random()*3500);
-}
+    // ========== HYPERSPACE & RAIN ==========
+    let stars = [], mx = -500, my = -500, hSpeed = 3;
+    class HS { constructor(w, h) { this.reset(w, h, true); } reset(w, h, init) { this.x = (Math.random() - 0.5) * w * 2.5; this.y = (Math.random() - 0.5) * h * 2.5; this.z = init ? Math.random() * 2000 : 1800 + Math.random() * 400; this.pz = this.z; } update(s, w, h) { this.pz = this.z; this.z -= s; if (this.z < 1) this.reset(w, h, false); } draw(ctx, w, h) { const cx = w / 2 + (mx - w / 2) * 0.015, cy = h / 2 + (my - h / 2) * 0.015; const sx = (this.x / this.z) * 500 + cx, sy = (this.y / this.z) * 500 + cy; const px = (this.x / this.pz) * 500 + cx, py = (this.y / this.pz) * 500 + cy; const b = 1 - this.z / 2200, a = Math.max(0, b * 0.7), lw = Math.max(0.3, b * 2.8); ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(sx, sy); ctx.strokeStyle = `rgba(180,210,255,${a})`; ctx.lineWidth = lw; ctx.stroke(); if (b > 0.75) { ctx.beginPath(); ctx.arc(sx, sy, lw * 0.7, 0, Math.PI * 2); ctx.fillStyle = `rgba(220,240,255,${a * 0.4})`; ctx.fill(); } } }
+    function initHyperspace() { stars = []; const w = hCanvas.width, h = hCanvas.height; for (let i = 0; i < (w < 768 ? 300 : 700); i++) stars.push(new HS(w, h)); }
+    function animateHyperspace() { hCtx.fillStyle = 'rgba(6,6,15,0.15)'; hCtx.fillRect(0, 0, hCanvas.width, hCanvas.height); const w = hCanvas.width, h = hCanvas.height; for (const s of stars) { s.update(hSpeed, w, h); s.draw(hCtx, w, h); } requestAnimationFrame(animateHyperspace); }
+    function resizeHyperspace() { hCanvas.width = window.innerWidth; hCanvas.height = window.innerHeight; initHyperspace(); }
+    resizeHyperspace(); animateHyperspace();
 
-let bAnimId;
-function animBalloons(){
-  for(let i=balloons.length-1;i>=0;i--){
-    const b=balloons[i];
-    if(!b.alive){balloons.splice(i,1);continue;}
-    b.y-=b.speed;b.phase+=b.swaySpeed*0.01;
-    b.el.style.top=b.y+'px';
-    b.el.style.transform=`translateX(${Math.sin(b.phase)*b.swayAmp}px)`;
-    if(b.y<-b.size*2){b.el.remove();balloons.splice(i,1);spawnBalloon(true);}
-  }
-  while(balloons.filter(b=>b.alive).length<balloonCount())spawnBalloon(true);
-  bAnimId=requestAnimationFrame(animBalloons);
-}
+    // Code rain
+    let rainStreams = [];
+    const rainChars = '01{}[]();=+<>!&|*/#%'.split('');
+    const rainFontSize = 14;
+    function resizeRain() { rCanvas.width = window.innerWidth; rCanvas.height = window.innerHeight; }
+    resizeRain();
+    function initRain() { rainStreams = []; const cols = Math.floor(rCanvas.width / rainFontSize); for (let i = 0; i < cols; i++) { if (Math.random() > 0.4) continue; const len = 4 + Math.floor(Math.random() * 14); const chars = []; for (let j = 0; j < len; j++) chars.push(rainChars[Math.floor(Math.random() * rainChars.length)]); rainStreams.push({ x: i * rainFontSize, y: Math.random() * -rCanvas.height * 1.5, spd: 0.8 + Math.random() * 2.5, len, bo: 0.02 + Math.random() * 0.035, chars }); } }
+    function animateRain() { rCtx.clearRect(0, 0, rCanvas.width, rCanvas.height); rCtx.font = rainFontSize + 'px "JetBrains Mono", monospace'; const w = rCanvas.width, h = rCanvas.height; for (const s of rainStreams) { for (let j = 0; j < s.len; j++) { const cy = s.y - j * rainFontSize; if (cy < -rainFontSize || cy > h + rainFontSize) continue; let a = s.bo * (1 - j / s.len); if (j === 0) a *= 2.5; const dx = s.x - mx, dy = cy - my, d = Math.hypot(dx, dy); if (d < 130) a += (1 - d / 130) * 0.14; a = Math.min(a, 0.25); const ch = j === 0 ? rainChars[Math.floor(Math.random() * rainChars.length)] : s.chars[j]; rCtx.fillStyle = j === 0 ? `rgba(0,229,255,${a})` : `rgba(77,124,254,${a})`; rCtx.fillText(ch, s.x, cy); if (Math.random() < 0.008) s.chars[j] = rainChars[Math.floor(Math.random() * rainChars.length)]; } s.y += s.spd; if (s.y - s.len * rainFontSize > h) { s.y = Math.random() * -300; s.spd = 0.8 + Math.random() * 2.5; } } requestAnimationFrame(animateRain); }
+    initRain(); animateRain();
+    window.addEventListener('resize', () => { resizeHyperspace(); resizeRain(); initRain(); });
+    window.addEventListener('scroll', () => { hSpeed = 3 + Math.min(window.scrollY * 0.003, 8); });
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    document.addEventListener('mouseleave', () => { mx = -500; my = -500; });
 
-function initBalloons(){
-  balloons.forEach(b=>b.el.remove());balloons=[];
-  for(let i=0;i<balloonCount();i++)setTimeout(()=>spawnBalloon(false),i*600);
-  if(!bAnimId)animBalloons();
-}
+    // Cursor follow
+    let cursorX = -500, cursorY = -500;
+    function animateCursor() { cursorX += (mx - cursorX) * 0.12; cursorY += (my - cursorY) * 0.12; cDot.style.left = mx + 'px'; cDot.style.top = my + 'px'; cRing.style.left = cursorX + 'px'; cRing.style.top = cursorY + 'px'; requestAnimationFrame(animateCursor); }
+    animateCursor();
+    document.querySelectorAll('a,button,.card-inner,.com-btn,.m-close,.balloon').forEach(el => { el.addEventListener('mouseenter', () => { cRing.style.width = '60px'; cRing.style.height = '60px'; cRing.style.borderColor = 'rgba(0,229,255,0.9)'; }); el.addEventListener('mouseleave', () => { cRing.style.width = '40px'; cRing.style.height = '40px'; cRing.style.borderColor = 'rgba(0,229,255,0.6)'; }); });
 
-/* ===== CONFETTI ===== */
-const cCols={card:['#00e5ff','#4d7cfe','#a855f7','#ec4899','#f59e0b','#fff'],nav:['#00e5ff','#4d7cfe','#a855f7'],badge:['#a855f7','#ec4899','#4d7cfe'],btn:['#1877f2','#0c5dc7','#00e5ff','#fff'],emoji:['#f59e0b','#ec4899','#00e5ff','#28c840','#4d7cfe'],close:['#ef4444','#f59e0b','#fff']};
-function spawnC(x,y,t){if(isMob()&&t!=='card')return;const cs=cCols[t]||cCols.card;const n=t==='card'?14:t==='btn'?10:t==='emoji'?12:t==='close'?8:6;for(let i=0;i<n;i++){const el=document.createElement('div');const sh=Math.random();el.className='confetti-p'+(sh<.5?'':sh<.75?' circle':' star');const c=cs[Math.floor(Math.random()*cs.length)];const a=(Math.PI*2/n)*i+(Math.random()-.5)*.8;const d=30+Math.random()*(t==='card'?80:50);el.style.cssText=`left:${x}px;top:${y}px;width:${3+Math.random()*5}px;height:${3+Math.random()*5}px;background:${c};--tx:${Math.cos(a)*d}px;--ty:${Math.sin(a)*d-20-Math.random()*30}px;--rot:${(Math.random()-.5)*720}deg;animation-duration:${.5+Math.random()*.4}s;animation-delay:${Math.random()*.05}s;`;document.body.appendChild(el);el.addEventListener('animationend',()=>el.remove());}}
-function spawnSp(x,y,t){if(isMob()&&t!=='card')return;const cs=cCols[t]||cCols.card;const n=t==='card'?8:5;for(let i=0;i<n;i++){const el=document.createElement('div');el.className='sparkle';const c=cs[Math.floor(Math.random()*cs.length)];const a=(Math.PI*2/n)*i+(Math.random()-.5)*.6;const d=15+Math.random()*35;el.style.cssText=`left:${x}px;top:${y}px;background:${c};box-shadow:0 0 6px ${c};--tx:${Math.cos(a)*d}px;--ty:${Math.sin(a)*d}px;--tx2:${Math.cos(a)*d*1.5+(Math.random()-.5)*15}px;--ty2:${Math.sin(a)*d*1.5+10+Math.random()*15}px;`;document.body.appendChild(el);el.addEventListener('animationend',()=>el.remove());}}
-function spawnRp(x,y,c){const el=document.createElement('div');el.className='click-ripple';el.style.cssText=`left:${x}px;top:${y}px;border-color:${c};`;document.body.appendChild(el);el.addEventListener('animationend',()=>el.remove());}
+    // Terminal boot
+    const terminalLines = [
+        { h: '<span class="tg">[SYS]</span> ICPC OTU Framework <span class="hl">v4.2.0</span> — Initializing...', d: 100 },
+        { h: '<span class="tg">[NET]</span> Connecting to ICPC Global Network... <span class="ok">✓</span>', d: 260 },
+        { h: '<span class="tg">[ALG]</span> Compiling competitive algorithms... <span class="dm">2,847 functions</span> <span class="ok">✓</span>', d: 240 },
+        { h: '<span class="tg">[BLN]</span> Inflating contest balloons... <span class="dm">7 colors ready</span> <span class="ok">✓</span>', d: 220 },
+        { h: '<span class="tg">[SEC]</span> Activating hyperspace subsystem... <span class="dm">warp ready</span> <span class="ok">✓</span>', d: 200 },
+        { h: '<span class="tg">[GPU]</span> Rendering nebula field... <span class="dm">700 stars active</span> <span class="ok">✓</span>', d: 190 },
+        { h: '<span class="tg">[ICPC]</span> Authenticating <span class="wr">October Technological University</span>... <span class="ok">✓</span>', d: 210 },
+        { h: '<span class="ok">[READY]</span> All systems operational — <span class="hl">Opening portal...</span>', d: 170 }
+    ];
+    async function runBoot() { return new Promise(resolve => { let acc = 0; terminalLines.forEach((line, idx) => { setTimeout(() => { const div = document.createElement('div'); div.className = 'tl'; div.innerHTML = line.h; tBody.appendChild(div); requestAnimationFrame(() => div.classList.add('v')); tBody.scrollTop = tBody.scrollHeight; if (idx === terminalLines.length - 2) { lBar.classList.add('v'); setTimeout(() => lFill.style.width = '100%', 50); } if (idx === terminalLines.length - 1) { const cursorSpan = document.createElement('span'); cursorSpan.className = 'tcur'; div.appendChild(cursorSpan); } }, acc); acc += line.d; }); setTimeout(resolve, acc + 500); }); }
 
-document.addEventListener('click',function(e){
-  if(e.target.closest('.balloon'))return;
-  const f=e.target.closest('[data-fx]');if(!f)return;
-  const t=f.dataset.fx,x=e.clientX,y=e.clientY;
-  if(t==='card'){spawnC(x,y,'card');spawnSp(x,y,'card');spawnRp(x,y,'rgba(0,229,255,0.3)');}
-  else if(t==='nav'){spawnSp(x,y,'nav');spawnRp(x,y,'rgba(77,124,254,0.25)');const r=f.getBoundingClientRect();f.style.setProperty('--cx',((x-r.left)/r.width*100)+'%');f.style.setProperty('--cy',((y-r.top)/r.height*100)+'%');}
-  else if(t==='badge'){spawnC(x,y,'badge');spawnRp(x,y,'rgba(168,85,247,0.25)');}
-  else if(t==='btn'){spawnC(x,y,'btn');spawnSp(x,y,'btn');spawnRp(x,y,'rgba(24,119,242,0.3)');}
-  else if(t==='emoji'){spawnC(x,y,'emoji');spawnSp(x,y,'emoji');}
-  else if(t==='close'){spawnC(x,y,'close');spawnRp(x,y,'rgba(239,68,68,0.3)');}
-});
+    // Typewriter
+    function typeWriter() { const text = 'The exceptional team driving competitive programming excellence — organizers, instructors, and mentors shaping the future of ICPC at October Technological University.'; let i = 0; hSub.textContent = ''; hSub.style.borderRight = '2px solid var(--cyan)'; function tick() { if (i < text.length) { hSub.textContent += text.charAt(i); i++; setTimeout(tick, 32); } else hSub.style.borderRight = 'none'; } tick(); }
 
-/* ===== PERSON DATA ===== */
-const PD={
-  shaimaa:{name:'Shaimaa Gamal',role:' ',r2:'ICPC OTU — University Representative',init:'SG',rg:'linear-gradient(135deg,#f59e0b,#ec4899,#a855f7)',rc:'#f59e0b',noImg:true},
-  eman:{name:'Eng. Eman Ashraf',role:'Coach',r2:'ICPC OTU',img:'./eman-ashraf.png',init:'EA',rg:'linear-gradient(135deg,#ec4899,#a855f7,#4d7cfe)',rc:'#ec4899'},
-  hossam:{name:'Hossam Mahmoud',role:'Community Leader & Instructor',r2:'ICPC OTU',img:'./hossam-mahmoud.png',init:'HM',rg:'linear-gradient(135deg,#f59e0b,#ec4899,#a855f7)',rc:'#f59e0b'},
-  nada:{name:'Nada Mohamed Safwat',role:'Organizer & Instructor',r2:'ICPC OTU',img:'./nada-mohamed-safwat.png',init:'NS',rg:'linear-gradient(135deg,#00e5ff,#4d7cfe,#a855f7)',rc:'#00e5ff'},
-  adam:{name:'Adam Mohamed Mahmoud',role:'Organizer & Instructor',r2:'ICPC OTU',img:'./adam-mohamed-mahmoud.png',init:'AM',rg:'linear-gradient(135deg,#00e5ff,#4d7cfe,#a855f7)',rc:'#00e5ff'},
-  ahmed:{name:'Ahmed Sameh Osama',role:'Organizer & Instructor',r2:'ICPC OTU',img:'./ahmed-sameh-osama.png',init:'AS',rg:'linear-gradient(135deg,#00e5ff,#4d7cfe,#a855f7)',rc:'#00e5ff'}
-};
+    // Modal logic
+    let currentPerson = null, orbitBits = [], orbitAnim = null, particleAnim = null, modalParticles = [];
+    function openModal(key) { if (mOv.classList.contains('active')) { closeModal(() => openModal(key)); return; } const data = PD[key]; if (!data) return; currentPerson = key; if (data.noImg) { mImg.style.display = 'none'; mPh.style.display = 'flex'; mPh.textContent = data.init; mPh.style.background = `linear-gradient(135deg,${data.rc}22,${data.rc}08)`; } else { mImg.src = data.img; mImg.style.display = 'block'; mPh.style.display = 'none'; mImg.onerror = function() { this.style.display = 'none'; mPh.style.display = 'flex'; mPh.textContent = data.init; }; } mName.textContent = data.name; mRole.textContent = data.role; mRole.style.color = data.rc; mR2.textContent = data.r2; mDiv.style.background = data.rg; const r1 = mCt.querySelector('.m-r1'); const r2 = mCt.querySelector('.m-r2'); if (r1) r1.style.background = `conic-gradient(from 0deg,${data.rc},var(--blue),var(--purple),var(--pink),${data.rc})`; if (r2) r2.style.background = `conic-gradient(from 180deg,var(--gold),${data.rc},var(--cyan),var(--gold))`; const rect = mCt.getBoundingClientRect(); mPC.width = rect.width + 120; mPC.height = rect.height + 120; mOv.classList.add('active'); document.body.style.overflow = 'hidden'; setTimeout(() => { startModalParticles(); startOrbitBits(); }, 100); }
+    function closeModal(cb) { mOv.classList.remove('active'); document.body.style.overflow = ''; stopOrbitBits(); stopModalParticles(); if (cb) setTimeout(cb, 450); }
+    mClose.setAttribute('data-fx', 'close'); mClose.addEventListener('click', (e) => { e.stopPropagation(); closeModal(); });
+    mOv.addEventListener('click', e => { if (e.target === mOv) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && mOv.classList.contains('active')) closeModal(); });
+    document.querySelectorAll('.card-item').forEach(card => { card.addEventListener('click', () => { const p = card.dataset.person; if (p) openModal(p); }); });
+    function startModalParticles() { const ctx = mPC.getContext('2d'); const cx = mPC.width / 2, cy = mPC.height / 2; const colors = ['rgba(0,229,255,', 'rgba(77,124,254,', 'rgba(168,85,247,', 'rgba(245,158,11,', 'rgba(236,72,153,']; modalParticles = []; for (let i = 0; i < 60; i++) { const angle = Math.random() * Math.PI * 2; const spd = 2 + Math.random() * 7; modalParticles.push({ x: cx, y: cy, vx: Math.cos(angle) * spd, vy: Math.sin(angle) * spd, r: 1 + Math.random() * 2.5, life: 1, decay: 0.004 + Math.random() * 0.008, col: colors[Math.floor(Math.random() * colors.length)] }); } function animateParticles() { ctx.clearRect(0, 0, mPC.width, mPC.height); let alive = false; for (const p of modalParticles) { if (p.life <= 0) continue; alive = true; p.x += p.vx; p.y += p.vy; p.vx *= 0.985; p.vy *= 0.985; p.life -= p.decay; ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(0.1, p.r * p.life), 0, Math.PI * 2); ctx.fillStyle = p.col + p.life * 0.8 + ')'; ctx.fill(); } if (alive) particleAnim = requestAnimationFrame(animateParticles); else { ctx.clearRect(0, 0, mPC.width, mPC.height); particleAnim = null; } } if (particleAnim) cancelAnimationFrame(particleAnim); animateParticles(); }
+    function stopModalParticles() { if (particleAnim) { cancelAnimationFrame(particleAnim); particleAnim = null; } mPC.getContext('2d').clearRect(0, 0, mPC.width, mPC.height); }
+    function startOrbitBits() { stopOrbitBits(); for (let i = 0; i < 10; i++) { const span = document.createElement('span'); span.className = 'o-bit'; span.textContent = Math.random() > 0.5 ? '1' : '0'; mAC.appendChild(span); orbitBits.push({ el: span, angle: (Math.PI * 2 / 10) * i, radius: 100 + Math.random() * 28, speed: 0.25 + Math.random() * 0.55, dir: Math.random() > 0.5 ? 1 : -1 }); } function animateOrbit() { for (const b of orbitBits) { b.angle += b.speed * 0.018 * b.dir; const x = Math.cos(b.angle) * b.radius; const y = Math.sin(b.angle) * b.radius; b.el.style.transform = `translate(${x}px,${y}px)`; } orbitAnim = requestAnimationFrame(animateOrbit); } animateOrbit(); }
+    function stopOrbitBits() { if (orbitAnim) { cancelAnimationFrame(orbitAnim); orbitAnim = null; } orbitBits.forEach(b => b.el.remove()); orbitBits = []; }
 
-/* ===== HYPERSPACE ===== */
-let stars=[],mx=-500,my=-500,hSpeed=3;
-class HS{constructor(w,h){this.reset(w,h,true);}reset(w,h,i){this.x=(Math.random()-.5)*w*2.5;this.y=(Math.random()-.5)*h*2.5;this.z=i?Math.random()*2000:1800+Math.random()*400;this.pz=this.z;}update(s,w,h){this.pz=this.z;this.z-=s;if(this.z<1)this.reset(w,h,false);}draw(c,w,h){const cx=w/2+(mx-w/2)*.015,cy=h/2+(my-h/2)*.015;const sx=(this.x/this.z)*500+cx,sy=(this.y/this.z)*500+cy,px=(this.x/this.pz)*500+cx,py=(this.y/this.pz)*500+cy;const b=1-this.z/2200,a=Math.max(0,b*.7),lw=Math.max(.3,b*2.8);c.beginPath();c.moveTo(px,py);c.lineTo(sx,sy);c.strokeStyle='rgba(180,210,255,'+a+')';c.lineWidth=lw;c.lineCap='round';c.stroke();if(b>.75){c.beginPath();c.arc(sx,sy,lw*.7,0,Math.PI*2);c.fillStyle='rgba(220,240,255,'+a*.4+')';c.fill();}}}
-function initH(){stars=[];const w=hCanvas.width,h=hCanvas.height;for(let i=0;i<(w<768?250:700);i++)stars.push(new HS(w,h));}
-function animH(){hCtx.fillStyle='rgba(6,6,15,0.15)';hCtx.fillRect(0,0,hCanvas.width,hCanvas.height);const w=hCanvas.width,h=hCanvas.height;for(const s of stars){s.update(hSpeed,w,h);s.draw(hCtx,w,h);}requestAnimationFrame(animH);}
-function resizeH(){hCanvas.width=window.innerWidth;hCanvas.height=window.innerHeight;}resizeH();initH();animH();
+    // Hash verification
+    function checkHash() { const hash = window.location.hash.replace('#', '').toLowerCase().trim(); if (!hash || !PD[hash]) return; const targetCard = document.getElementById('card-' + hash); if (targetCard) { document.querySelectorAll('.card-item.verified').forEach(c => c.classList.remove('verified')); targetCard.classList.add('verified'); setTimeout(() => targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' }), 600); showT('✅ Identity Verified: ' + PD[hash].name); } }
+    window.addEventListener('hashchange', () => { document.querySelectorAll('.card-item.verified').forEach(c => c.classList.remove('verified')); checkHash(); }); checkHash();
 
-/* ===== CODE RAIN ===== */
-let rainS=[];const rCh='01{}[]();=+<>!&|*/#%'.split('');const rFS=14;
-function resizeR(){rCanvas.width=window.innerWidth;rCanvas.height=window.innerHeight;}resizeR();
-function initRain(){rainS=[];const mb=isMob(),sp=mb?18:rFS;const cols=Math.floor(rCanvas.width/sp);for(let i=0;i<cols;i++){if(Math.random()>(mb?.28:.4))continue;const len=4+Math.floor(Math.random()*14);const ch=[];for(let j=0;j<len;j++)ch.push(rCh[Math.floor(Math.random()*rCh.length)]);rainS.push({x:i*sp,y:Math.random()*-rCanvas.height*1.5,spd:.8+Math.random()*2.5,len,bo:.02+Math.random()*.035,ch});}}
-function animR(){rCtx.clearRect(0,0,rCanvas.width,rCanvas.height);rCtx.font=rFS+'px "JetBrains Mono",monospace';const w=rCanvas.width,h=rCanvas.height;for(const s of rainS){for(let j=0;j<s.len;j++){const cy=s.y-j*rFS;if(cy<-rFS||cy>h+rFS)continue;let a=s.bo*(1-j/s.len);if(j===0)a*=2.5;const dx=s.x-mx,dy=cy-my,d=Math.sqrt(dx*dx+dy*dy);if(d<130)a+=(1-d/130)*.14;a=Math.min(a,.25);const c=j===0?rCh[Math.floor(Math.random()*rCh.length)]:s.ch[j];rCtx.fillStyle=j===0?'rgba(0,229,255,'+a+')':'rgba(77,124,254,'+a+')';rCtx.fillText(c,s.x,cy);if(Math.random()<.008)s.ch[j]=rCh[Math.floor(Math.random()*rCh.length)];}s.y+=s.spd;if(s.y-s.len*rFS>h){s.y=Math.random()*-300;s.spd=.8+Math.random()*2.5;}}requestAnimationFrame(animR);}
-initRain();animR();
+    // 3D tilt effect on cards
+    document.querySelectorAll('.card-inner').forEach(card => { card.addEventListener('mousemove', e => { const rect = card.getBoundingClientRect(); const x = e.clientX - rect.left, y = e.clientY - rect.top; const rotY = ((x - rect.width / 2) / (rect.width / 2)) * 10; const rotX = ((y - rect.height / 2) / (rect.height / 2)) * -10; card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px)`; }); card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)'; }); });
 
-window.addEventListener('resize',()=>{resizeH();resizeR();initH();initRain();});
-window.addEventListener('scroll',()=>{hSpeed=3+Math.min(window.scrollY*.003,8);});
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-document.addEventListener('mouseleave',()=>{mx=-500;my=-500;});
+    // Scroll to top button
+    window.addEventListener('scroll', () => stBtn.classList.toggle('vis', window.scrollY > 400));
+    stBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-/* ===== CURSOR ===== */
-let cx2=-500,cy2=-500;
-(function aC(){cx2+=(mx-cx2)*.12;cy2+=(my-cy2)*.12;cDot.style.left=mx+'px';cDot.style.top=my+'px';cRing.style.left=cx2+'px';cRing.style.top=cy2+'px';requestAnimationFrame(aC);})();
-document.querySelectorAll('a,button,.card-inner,.com-btn,.m-close,.balloon').forEach(el=>{el.addEventListener('mouseenter',()=>{cRing.style.width='60px';cRing.style.height='60px';cRing.style.borderColor='rgba(0,229,255,0.9)';});el.addEventListener('mouseleave',()=>{cRing.style.width='40px';cRing.style.height='40px';cRing.style.borderColor='rgba(0,229,255,0.6)';});});
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; } }); }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('.card-item,.com-card,.cosmic-wrap').forEach(el => observer.observe(el));
 
-/* ===== TERMINAL ===== */
-const tL=[
-  {h:'<span class="tg">[SYS]</span> ICPC OTU Framework <span class="hl">v4.2.0</span> — Initializing...',d:100},
-  {h:'<span class="tg">[NET]</span> Connecting to ICPC Global Network... <span class="ok">✓</span>',d:260},
-  {h:'<span class="tg">[ALG]</span> Compiling competitive algorithms... <span class="dm">2,847 functions</span> <span class="ok">✓</span>',d:240},
-  {h:'<span class="tg">[BLN]</span> Inflating contest balloons... <span class="dm">7 colors ready</span> <span class="ok">✓</span>',d:220},
-  {h:'<span class="tg">[SEC]</span> Activating hyperspace subsystem... <span class="dm">warp ready</span> <span class="ok">✓</span>',d:200},
-  {h:'<span class="tg">[GPU]</span> Rendering nebula field... <span class="dm">700 stars active</span> <span class="ok">✓</span>',d:190},
-  {h:'<span class="tg">[ICPC]</span> Authenticating <span class="wr">October Technological University</span>... <span class="ok">✓</span>',d:210},
-  {h:'<span class="ok">[READY]</span> All systems operational — <span class="hl">Opening portal...</span>',d:170}
-];
-function runBoot(){return new Promise(r=>{let t=0;tL.forEach((l,i)=>{t+=l.d;setTimeout(()=>{const d=document.createElement('div');d.className='tl';d.innerHTML=l.h;tBody.appendChild(d);requestAnimationFrame(()=>d.classList.add('v'));tBody.scrollTop=tBody.scrollHeight;if(i===tL.length-2){lBar.classList.add('v');setTimeout(()=>lFill.style.width='100%',50);}if(i===tL.length-1){const c=document.createElement('span');c.className='tcur';d.appendChild(c);}},t);});setTimeout(r,t+500);});}
+    // Nav active and smooth scroll
+    document.querySelectorAll('.nav-link').forEach(link => { link.addEventListener('click', function() { document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active')); this.classList.add('active'); }); });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const target = document.querySelector(this.getAttribute('href')); if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }); });
 
-window.addEventListener('load',async()=>{
-  await runBoot();await new Promise(r=>setTimeout(r,400));
-  pMask.classList.add('open');lContent.classList.add('fade');mCont.classList.add('vis');
-  await new Promise(r=>setTimeout(r,1800));ls.classList.add('gone');
-  typeW();startShoot();initBalloons();
-});
+    // Image fallback handler
+    document.querySelectorAll('.av-img,.cosmic-img,.loading-logo-img').forEach(img => { const placeholder = img.nextElementSibling; if (!placeholder) return; if (img.complete && img.naturalWidth === 0) { img.style.display = 'none'; if (placeholder.style) placeholder.style.display = 'flex'; } img.addEventListener('error', function() { this.style.display = 'none'; if (placeholder && placeholder.style) placeholder.style.display = 'flex'; }); });
 
-const ss=document.createElement('style');ss.textContent='@keyframes shoot{0%{opacity:1;transform:rotate(var(--angle,25deg)) translateX(0)}100%{opacity:0;transform:rotate(var(--angle,25deg)) translateX(350px)}}';document.head.appendChild(ss);
-function spawnS(){if(isMob())return;const s=document.createElement('div');s.style.cssText='position:fixed;height:1.5px;border-radius:1px;z-index:0;pointer-events:none;animation:shoot 1.2s ease-out forwards;';s.style.top=Math.random()*30+'%';s.style.left=Math.random()*50+'%';s.style.setProperty('--angle',(15+Math.random()*35)+'deg');s.style.width=(80+Math.random()*120)+'px';const cs=['rgba(0,229,255,0.7)','rgba(77,124,254,0.7)','rgba(168,85,247,0.6)','rgba(255,255,255,0.5)'];s.style.background='linear-gradient(90deg,'+cs[Math.floor(Math.random()*cs.length)]+',transparent)';document.body.appendChild(s);s.addEventListener('animationend',()=>s.remove());}
-function startShoot(){setInterval(()=>{if(Math.random()<.55)spawnS();},5000+Math.random()*4000);}
+    // Launch sequence
+    window.addEventListener('load', async () => {
+        await runBoot(); await new Promise(r => setTimeout(r, 400));
+        pMask.classList.add('open'); lContent.classList.add('fade'); mCont.classList.add('vis');
+        await new Promise(r => setTimeout(r, 1800)); ls.classList.add('gone');
+        typeWriter(); initBalloons();
+    });
 
-function typeW(){const t='The exceptional team driving competitive programming excellence — organizers, instructors, and mentors shaping the future of ICPC at October Technological University.';let i=0;hSub.textContent='';hSub.style.borderRight='2px solid var(--cyan)';(function tp(){if(i<t.length){hSub.textContent+=t.charAt(i);i++;setTimeout(tp,32);}else hSub.style.borderRight='none';})();}
-
-/* ===== MODAL ===== */
-let curMP=null,oBits=[],oAId=null,mPId=null,mParts=[];
-function openM(key){if(mOv.classList.contains('active')){closeM(()=>openM(key));return;}const d=PD[key];if(!d)return;curMP=key;
-  if(d.noImg){mImg.style.display='none';mPh.style.display='flex';mPh.textContent=d.init;mPh.style.background='linear-gradient(135deg,'+d.rc+'22,'+d.rc+'08)';mPh.style.border='none';mPh.style.borderRadius='50%';}
-  else{mImg.src=d.img;mImg.style.display='block';mPh.style.display='none';mImg.onerror=function(){this.style.display='none';mPh.style.display='flex';mPh.textContent=d.init;};}
-  mName.textContent=d.name;mRole.textContent=d.role;mRole.style.color=d.rc;mR2.textContent=d.r2;mDiv.style.background=d.rg;
-  mCt.querySelector('.m-r1').style.background='conic-gradient(from 0deg,'+d.rc+',var(--blue),var(--purple),var(--pink),'+d.rc+')';
-  mCt.querySelector('.m-r2').style.background='conic-gradient(from 180deg,var(--gold),'+d.rc+',var(--cyan),var(--gold))';
-  const r=mCt.getBoundingClientRect();mPC.width=r.width+120;mPC.height=r.height+120;
-  mOv.classList.add('active');document.body.style.overflow='hidden';
-  setTimeout(()=>{spawnMP();createOB();},100);
-}
-function closeM(cb){mOv.classList.remove('active');document.body.style.overflow='';destroyOB();stopMP();if(cb)setTimeout(cb,450);}
-mClose.setAttribute('data-fx','close');mClose.addEventListener('click',function(e){e.stopPropagation();closeM();});
-mOv.addEventListener('click',e=>{if(e.target===mOv)closeM();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mOv.classList.contains('active'))closeM();});
-document.querySelectorAll('.card-item').forEach(c=>{c.addEventListener('click',()=>{const k=c.dataset.person;if(k)openM(k);});});
-function spawnMP(){mParts=[];const ctx=mPC.getContext('2d');const cx2=mPC.width/2,cy2=mPC.height/2;const cols=['rgba(0,229,255,','rgba(77,124,254,','rgba(168,85,247,','rgba(245,158,11,','rgba(236,72,153,'];for(let i=0;i<60;i++){const a=Math.random()*Math.PI*2;const sp=2+Math.random()*7;mParts.push({x:cx2,y:cy2,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,r:1+Math.random()*2.5,life:1,dc:.004+Math.random()*.008,c:cols[Math.floor(Math.random()*cols.length)]});}function anim(){ctx.clearRect(0,0,mPC.width,mPC.height);let alive=false;for(const p of mParts){if(p.life<=0)continue;alive=true;p.x+=p.vx;p.y+=p.vy;p.vx*=.985;p.vy*=.985;p.life-=p.dc;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.1,p.r*p.life),0,Math.PI*2);ctx.fillStyle=p.c+p.life*.8+')';ctx.fill();}if(alive)mPId=requestAnimationFrame(anim);else{ctx.clearRect(0,0,mPC.width,mPC.height);mPId=null;}}if(mPId)cancelAnimationFrame(mPId);anim();}
-function stopMP(){if(mPId){cancelAnimationFrame(mPId);mPId=null;}mPC.getContext('2d').clearRect(0,0,mPC.width,mPC.height);}
-function createOB(){destroyOB();for(let i=0;i<10;i++){const el=document.createElement('span');el.className='o-bit';el.textContent=Math.random()>.5?'1':'0';mAC.appendChild(el);oBits.push({el,angle:(Math.PI*2/10)*i,r:100+Math.random()*28,spd:.25+Math.random()*.55,dir:Math.random()>.5?1:-1});}animOB();}
-function animOB(){for(const b of oBits){b.angle+=b.spd*.018*b.dir;const x=Math.cos(b.angle)*b.r;const y=Math.sin(b.angle)*b.r;b.el.style.transform='translate('+x+'px,'+y+'px)';}oAId=requestAnimationFrame(animOB);}
-function destroyOB(){if(oAId){cancelAnimationFrame(oAId);oAId=null;}oBits.forEach(b=>b.el.remove());oBits=[];}
-
-function checkH(){const h=window.location.hash.replace('#','').toLowerCase().trim();if(!h||!PD[h])return;const c=$('card-'+h);if(!c)return;document.querySelectorAll('.card-item.verified').forEach(x=>x.classList.remove('verified'));c.classList.add('verified');setTimeout(()=>c.scrollIntoView({behavior:'smooth',block:'center'}),600);showT('✅ Identity Verified: '+(PD[h]?PD[h].name:h));}
-function showT(m){tMsg.textContent=m;toast.classList.add('show');clearTimeout(toast._t);toast._t=setTimeout(()=>toast.classList.remove('show'),4000);}
-window.addEventListener('hashchange',()=>{document.querySelectorAll('.card-item.verified').forEach(x=>x.classList.remove('verified'));checkH();});checkH();
-
-document.querySelectorAll('.card-inner').forEach(c=>{c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;c.style.transform='perspective(800px) rotateX('+((y-r.height/2)/(r.height/2))*-10+'deg) rotateY('+((x-r.width/2)/(r.width/2))*10+'deg) translateY(-8px)';});c.addEventListener('mouseleave',()=>{c.style.transform='perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)';});});
-
-window.addEventListener('scroll',()=>stBtn.classList.toggle('vis',window.scrollY>400));
-stBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.card-item,.com-card,.cosmic-wrap').forEach(el=>obs.observe(el));
-document.querySelectorAll('.nav-link').forEach(l=>{l.addEventListener('click',function(){document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('active'));this.classList.add('active');});});
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
-document.querySelectorAll('.av-img,.cosmic-img,.loading-logo-img').forEach(img=>{const ph=img.nextElementSibling;if(!ph)return;if(img.complete&&img.naturalWidth===0){img.style.display='none';if(ph.style)ph.style.display='flex';}img.addEventListener('error',function(){this.style.display='none';if(ph&&ph.style)ph.style.display='flex';});});
+    // Confetti on data-fx clicks
+    const fxColors = { card: ['#00e5ff','#4d7cfe','#a855f7','#ec4899','#f59e0b','#fff'], nav: ['#00e5ff','#4d7cfe','#a855f7'], badge: ['#a855f7','#ec4899','#4d7cfe'], btn: ['#1877f2','#0c5dc7','#00e5ff','#fff'], emoji: ['#f59e0b','#ec4899','#00e5ff','#28c840','#4d7cfe'], close: ['#ef4444','#f59e0b','#fff'] };
+    document.addEventListener('click', function(e) { const fxElem = e.target.closest('[data-fx]'); if (!fxElem) return; const type = fxElem.dataset.fx; const x = e.clientX, y = e.clientY; const cols = fxColors[type] || fxColors.card; const count = type === 'card' ? 14 : type === 'btn' ? 10 : type === 'emoji' ? 12 : type === 'close' ? 8 : 6; for (let i = 0; i < count; i++) { const cf = document.createElement('div'); const sh = Math.random(); cf.className = 'confetti-p' + (sh < 0.5 ? ' circle' : sh < 0.75 ? '' : ' star'); const c = cols[Math.floor(Math.random() * cols.length)]; const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5) * 0.8; const dist = 30 + Math.random() * (type === 'card' ? 80 : 50); cf.style.cssText = `left:${x}px;top:${y}px;width:${3 + Math.random() * 5}px;height:${3 + Math.random() * 5}px;background:${c};--tx:${Math.cos(angle) * dist}px;--ty:${Math.sin(angle) * dist - 20 - Math.random() * 30}px;--rot:${(Math.random() - 0.5) * 720}deg;animation-duration:${0.5 + Math.random() * 0.4}s;`; document.body.appendChild(cf); cf.addEventListener('animationend', () => cf.remove()); } const ripple = document.createElement('div'); ripple.className = 'click-ripple'; let borderColor = 'rgba(0,229,255,0.3)'; if (type === 'nav') borderColor = 'rgba(77,124,254,0.25)'; else if (type === 'badge') borderColor = 'rgba(168,85,247,0.25)'; else if (type === 'btn') borderColor = 'rgba(24,119,242,0.3)'; else if (type === 'close') borderColor = 'rgba(239,68,68,0.3)'; ripple.style.cssText = `left:${x}px;top:${y}px;border-color:${borderColor};`; document.body.appendChild(ripple); ripple.addEventListener('animationend', () => ripple.remove()); if (type === 'nav') { const rect = fxElem.getBoundingClientRect(); fxElem.style.setProperty('--cx', ((x - rect.left) / rect.width * 100) + '%'); fxElem.style.setProperty('--cy', ((y - rect.top) / rect.height * 100) + '%'); } });
 })();
 </script>
 </body>
